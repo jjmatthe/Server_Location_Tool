@@ -1,9 +1,10 @@
-import streamlit as st
+import os
 import ipinfo
 import socket
+import streamlit as st
 
-# Replace with your IPinfo API token
-IPINFO_TOKEN = "ce0360f4a4f6fd"
+# Retrieve IPinfo token from the environment variable
+IPINFO_TOKEN = os.getenv("IPINFO_TOKEN")
 
 # Function to get server location
 def get_server_location(domain):
@@ -17,18 +18,6 @@ def get_server_location(domain):
         st.error(f"Error fetching data: {e}")
         return None
 
-# Function to display server location
-def display_server_location(domain):
-    location_data = get_server_location(domain)
-    if location_data:
-        st.write("### Server Location")
-        st.write(f"**Country:** {location_data.get('country_name', 'Unknown')}")
-        st.write(f"**Region:** {location_data.get('region', 'Unknown')}")
-        st.write(f"**City:** {location_data.get('city', 'Unknown')}")
-    else:
-        st.error("Failed to retrieve server location.")
-
-# Streamlit interface
 def main():
     st.title("Geopolitical Cyber Risk Tool")
     url = st.text_input("Enter a website URL (e.g., example.com)")
