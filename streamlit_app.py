@@ -11,7 +11,7 @@ def get_ip_address(domain):
         return None
 
 def main():
-    st.title("Basic Server Location Tool")
+    st.title("Basic IP Address Tool")
     url = st.text_input("Enter a website URL (e.g., example.com)")
 
     if st.button("Get IP Address"):
